@@ -5,7 +5,12 @@ function _git_rev_name --description "print a representation of the currently ch
 end
 
 function _is_git_dirty  --description "exits with status 0 if the current git working copy is dirty"
-	return (test (git status -s --ignore-submodules=dirty ^/dev/null))
+	set st (git status -s --ignore-submodules=dirty ^/dev/null)
+	if test $st
+		return 0
+	else
+		return 1
+	end
 end
 
 function _git_info_string --description "Print a colored info string about the status of the current git working copy."
@@ -43,7 +48,12 @@ function _hg_rev_no --description "print the current local hg revision number"
 end
 
 function _is_hg_dirty --description "exits with status 0 if the current hg working copy is dirty"
-	return (test (hg status ^/dev/null))
+	set st (hg status ^/dev/null)
+	if test $st
+		return 0
+	else
+		return 1
+	end
 end
 
 function _hg_info_string --description "Print a colored info string about the status of the current hg working copy"

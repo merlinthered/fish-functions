@@ -1,4 +1,6 @@
 #! fish
+. vcs_functions.fish
+. utilities.fish
 
 function fish_prompt
 
