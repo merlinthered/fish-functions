@@ -40,5 +40,9 @@ function fish_prompt
     	set svn_info ""
     end
 
-	echo -n -s $arrow $cwd $git_info $hg_info $svn_info $normal $bold '>' $normal
+    set subdirs (_count_subdirs .)
+    set files (_count_files .)
+    set dir_info $blue " (" $subdirs "/" $normal $files $blue ")" $normal
+
+	echo -n -s $arrow $cwd $git_info $hg_info $svn_info $dir_info $normal $bold '>' $normal
 end
