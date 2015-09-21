@@ -38,21 +38,21 @@ function fish_prompt
 	set -l cwd (prompt_pwd)/
 
 	# Git info
-	if type git >/dev/null
+	if type -q git
 		set git_info (_git_info_string " git:(" ")")
-	else 
+	else
 		set git_info ""
 	end
 
 	# Mercurial info
-	if type hg >/dev/null
+	if type -q hg
     	set hg_info (_hg_info_string " hg:(" ")")
     else
     	set hg_info ""
     end
 
 	# Subversion info
-	if type svn >/dev/null
+	if type -q svn
     	set svn_info (_svn_info_string " svn:(" ")")
     else
     	set svn_info ""
