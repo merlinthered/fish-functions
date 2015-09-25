@@ -1,10 +1,20 @@
 #! fish
 
 function _hg_info_string --description "Print a colored info string about the status of the current hg working copy"
-      
+
+	set -l prefix ""
+	set -l suffix ""
+
+	if test (count $argv) -gt 0
+		set prefix $argv[1]
+	end
+
+	if test (count $argv) -gt 1
+		set suffix $argv[2]
+	end
+
     set -l dirtycolor (set_color red)
 	set -l cleancolor (set_color green)
-
 	set -l normal (set_color normal)
 
     set hg_branch_name (_hg_branch_name)
@@ -27,6 +37,6 @@ function _hg_info_string --description "Print a colored info string about the st
 			set st_color $cleancolor
 		end
 
-		echo -n -s $argv[1] $st_color $hg_branch_name @ $hg_revinfo $normal $argv[2]
+		echo -n -s $prefix $st_color $hg_branch_name @ $hg_revinfo $normal $suffix
 	end
 end
