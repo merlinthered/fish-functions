@@ -23,9 +23,9 @@ function fish_prompt
 	# Define colors
 	set -l cwdcolor (set_color $fish_color_cwd)
 	set -l normal (set_color normal)
-
-	set -l arrow "➜ "
+        set -l head "> "
+	set -l arrow "➜ " 
 	set -l cwd (prompt_pwd)/
 
-	echo -n -s $arrow $cwdcolor $cwd $normal "> "
+	echo -n -s $cwdcolor $cwd $normal $head
 end
