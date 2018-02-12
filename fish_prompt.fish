@@ -27,5 +27,14 @@ function fish_prompt
 	set -l arrow "➜ " 
 	set -l cwd (prompt_pwd)/
 
-	echo -n -s $cwdcolor $cwd $normal $head
+	set -l user_host ""
+	if test -n "$SSH_TTY"
+		set -l user_color (set_color $fish_color_user)
+		set -l host_color (set_color $fish_color_host)
+		set -l uname (id -u -n)
+		set -l hname (hostname)
+		set user_host "$user_color$uname$normal@$host_color$hname$normal "
+	end
+
+	echo -n -s $user_host $cwdcolor $cwd $normal $head
 end
